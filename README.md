@@ -1,2 +1,2 @@
-azywong.github.io.
+azywong.github.io
 ==================
