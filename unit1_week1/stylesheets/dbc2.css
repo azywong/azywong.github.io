@@ -3,7 +3,7 @@
 	padding: 0px 0px 0px 0px;
 }
 body {
-	background-image:url('images/bg.png');
+	background-image:url('../images/bg.png');
 	font-family: Trebuchet MS;
 	max-width: 1400px;
 }
