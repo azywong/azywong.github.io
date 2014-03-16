@@ -33,11 +33,41 @@ header {
 	border-right:1px solid #696969;
 	border-top:1px solid #696969;
 }
-#contact {
+#links {
 	float:left;
 	width: 25%;
 	background-color: #ffffff;
 	border-top:1px solid #696969;
+}
+
+/* profile */
+#profile {
+        width:45%;
+        background-color: #dedede;
+        margin: 0 auto;
+        padding: 5px;
+        border: 1px solid #ababab;
+        border-radius: 10px;
+      }
+#profile h2 {
+        background-color:white;
+        padding: 1%;
+        text-align:center;
+        margin: 1%;
+        color: tomato;
+      }
+#profile img {
+    	width:50%;
+        margin: 0 auto;
+        display: block;
+      }
+#profile h3 {
+        background-color:tomato;
+        padding: 1%;
+        margin: 1%;        
+      }
+#profile ul li {
+	margin-left: 10%;
 }
 
 
@@ -60,22 +90,35 @@ p {
 	color: #779e00;
 }
 
-/* contact */
+/* links */
 
-#contact ul li {
+#links ul li {
 	list-style-type: none;
 }
 
-#contact ul li a {
+#links ul li a {
 	display: block;
 	padding: 3px;
 	border-bottom: 1px solid #0a0a0a;
 	text-decoration: none;
 	color: #0a0a0a;
 }
-#contact ul li a:hover {
+#links ul li a:hover {
 	background-color: tomato;
+	color: #ffffff;
+}
 
+#links ul li ul li {
+	list-style-type: non;
+}
+#links ul li ul li a {
+	display: block;
+	padding: 3px;
+	border-bottom: 1px solid #0a0a0a;
+	text-decoration: none;
+	color: #909090;
+	background-color: #dedede;
+	font-size: 0.75em;
 }
 
 /* navigation */
@@ -91,6 +134,7 @@ nav a {
 	border-left: 1px solid #696969;
 	text-decoration: none;
 	width:17%;
+	color: #0a0a0a;
 }
 nav a:visited {
 	background-color: #ffffff;
@@ -104,32 +148,4 @@ footer {
 	background-color: #ff5628;
 	padding: 1%;
 	text-align: center;
-}
-
-/* image and caption */
-
-.caption {
-	width: 70%;
-	margin: 0 auto;
-	border-radius: 10px;
-	background-color: #ffffff;
-	border: 1px solid #ababab;
-	padding: 5px 5px 5px 5px;
-}
-.caption img {
-	display: block;
-	margin: 0 auto;
-	padding: 15px 0px 15px 0px;
-}
-.caption .caption-text {
-	display: block;
-	width: 75%;
-	position: relative;
-	left: 5%;
-	top: -5em;
-	color: #ffffff;
-	background-color: #000000;
-	opacity: 0.6;
-	padding: 5px 10px 5px 10px;
-	font-size: 0.75em;
 }
