@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+</head>
+
+<body>
+	
+	<header>
+		<h1>U1.W3: Technical Blog Entry #2</h1>
+	</header>
+
+	<div id="container">
+	<section id="content">
+		<article>
+		<h2>Arrays vs. Hashes in Ruby</h2>
+		<h3>Date: March 29, 2014</h3>
+
+		<p>Arrays in Ruby are a way of saving multiple values in one variable. The format is as follows</p>
+
+		<blockquote>my_array_name = [1, 2, "string", 4, 5]</blockquote>
+
+		<p>Arrays can store numbers, strings or even other arrays.  You can access elements in the array with the following syntax, by using their index number, starting from 0:</p>
+
+		<blockquote>my_array_name[0] # => 1 <br />
+			my_array_name[1] # => 2 <br />
+			my_array_name[2] # => "string" <br />
+			my_array_name[3] # => 4 <br />
+			my_array_name[4] # => 5		<br />						</blockquote>
+
+		<p>Hashes on the other hand, are similar to Arrays in that they can store multiple values.  But instead of using a numbered index to access values, hashes use key: value pairs.  The notation looks something like this:</p>
+
+		<blockquote>my_hash_name = { key: value }</blockquote>
+
+		<p>Hashes can also store numbers, strings, other hashes and arrays.  Similar to Arrays, you can access elements in a hash by referring to the key, as illustrated by the following example:</p>
+
+		<blockquote>new_hash = { red: 1, <br />
+			blue: 8, <br />
+			yellow: 10} <br />
+			new_hash[red] # => 1</blockquote>
+
+		<p>While Hashes and Arrays are similar, they are not always substitutable.  For example, if you were using a variable to hold a list of people's names and test scores, you would probably want to use a Hash.  That way you could access each person's test score by using their name as a key.  Otherwise, accessing each score using a numbered index would make less sense, and you wouldn't be able to link each person to their scores.</p>
+
+		<blockquote><p>test scores as a hash</p>
+			test_scores = {<br />
+			adam : 90,<br />
+			bob : 75,<br />
+			cathy: 89<br />
+		}</blockquote>
+
+		<blockquote><p>test scores as an array</p>
+			test_scores = [90, 75, 89]</blockquote>
+
+		<p>Take another example:  If you were using a variable to hold a list of desserts, you probably wouldn't need to use a hash because there wouldn't be a need for key value pairs.  You coul just structure it as follows:</p>
+
+		<blockquote>desserts = ["strawverry chiffon cake", "apple pie", "lemon sorbet"]</blockquote>
+
+		<p>When coding it is best to think about the intended usage and structure of the code before implementing the data structure that fits, whether it be a hash, array, or something else entirely.</p>
+
+		</article>
+	</section>
+
+	<nav>
+	<ul>
+		<li><a href="http://azywong.github.io/">Main Index</a></li>
+		<li>Links</li>
+		<li><ul>
+			<li><a href="https://twitter.com/pinkarrison">Twitter</a></li>
+			<li><a href="mailto:azywong@gmail.com">Email</a></li>
+		</ul></li>
+	</ul>
+	</nav>
+	</div>
+	<footer> Last updated March 2014</footer>
+
+</body>
+</html>
