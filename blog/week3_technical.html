@@ -36,10 +36,10 @@
 
 		<p>Hashes can also store numbers, strings, other hashes and arrays.  Similar to Arrays, you can access elements in a hash by referring to the key, as illustrated by the following example:</p>
 
-		<blockquote>new_hash = { red: 1, <br />
-			blue: 8, <br />
-			yellow: 10} <br />
-			new_hash[red] # => 1</blockquote>
+		<blockquote>new_hash = { "red" => 1, <br />
+			"blue" => 8, <br />
+			"yellow" => 10} <br />
+			p new_hash['red'] # => 1</blockquote>
 
 		<p>While Hashes and Arrays are similar, they are not always substitutable.  For example, if you were using a variable to hold a list of people's names and test scores, you would probably want to use a Hash.  That way you could access each person's test score by using their name as a key.  Otherwise, accessing each score using a numbered index would make less sense, and you wouldn't be able to link each person to their scores.</p>
 
