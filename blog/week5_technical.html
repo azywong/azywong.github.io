@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+
+<body>
+	
+	<header>
+		<h1>U1.W5: Technical Blog Entry</h1>
+	</header>
+
+	<div id="container">
+	<section id="content">
+		<article>
+		<h2>When to Use Classes in Ruby</h2>
+		<h3>Date: April 12, 2014</h3>
+		<p>A class in Ruby creates a template or format for which new objects can be created.</p>
+
+		<p>For example, if we were going to be listing a bunch of pets, say for a shelter.  We'd probably want to create a class pet that lists name, breed, age, among other things.</p>
+
+		<blockquote>class Pet <br> <br>
+  			def initialize(name, breed, age) <br>
+  			@name = name <br>
+  			@breed = breed <br>
+  			@age = age <br>
+  			end 
+  		</blockquote>
+
+		<p>For each new pet object, we can just create it using the format that the class sets out for us.</p>
+
+		<blockquote>Pet.new("Bobo", "corgi", 5)</blockquote>
+
+		<p>You want to use classes when you are going to create different objects from the same format, or test/do something through the same criteria.  In order to save on repition, you would use a class.</p>
+
+		<p>For example, in our dice exercise, we were rolling a new die each time, and we used a class so that bit of code was resuable each time we wanted to go ahead and roll the die.</p>
+
+		<p>Within the class, the "@" sign means that the variable in question is an instance variable, and in this case it is a class wide variable.  That means that you can call on in anywhere within the class "Pet," even outside of the context of "initialize."  This is important because we want to be able to reuse these variables in other methods within the class without having to create duplicate variables.</p>
+
+		<p>The cool thing about Classes is that you can define methods inside of them, both public and private.  A public method is one that you can call from anywhere, and a private one is one that you can only call from inside/within the class.  This creates a variety of options for programmers.</p>
+		</article>
+	</section>
+
+	<nav>
+	<ul>
+		<li><a href="http://azywong.github.io/">Main Index</a></li>
+		<li>Links</li>
+		<li><ul>
+			<li><a href="https://twitter.com/pinkarrison">Twitter</a></li>
+			<li><a href="mailto:azywong@gmail.com">Email</a></li>
+		</ul></li>
+	</ul>
+	</nav>
+	</div>
+	<footer> Last updated March 2014</footer>
+
+</body>
+</html>

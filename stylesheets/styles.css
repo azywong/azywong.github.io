@@ -1,0 +1,142 @@
+
+/* general styles and layout */
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	font-family: Trebuchet MS;
+	max-width: 1400px;
+	background-color: #ffffff;
+}
+img {
+	max-width: 100%;
+}
+#container {
+	margin: 0 auto;
+	width: 100%;
+	background-color: #ffffff;
+}
+header {
+	background-color: #003a4d;
+	padding: 1% 1% 1% 1%;
+	color: #ffffff;
+}
+#content {
+	clear:both;
+	width: 65%;
+	float: left;
+	background-color: #ffffff;
+	padding: 1% 2% 2% 2%;
+	border-right:1px solid #696969;
+}
+#links {
+	float:left;
+	width: 29%;
+	background-color: #ffffff;
+	padding-top: 2%;
+}
+
+/* profile */
+#profile {
+        width:45%;
+        background-color: #dedede;
+        margin: 0 auto;
+        padding: 5px;
+        border: 1px solid #ababab;
+        border-radius: 10px;
+      }
+#profile h2 {
+        background-color:white;
+        padding: 1%;
+        text-align:center;
+        margin: 1%;
+        color: tomato;
+      }
+#profile img {
+    	width:50%;
+        margin: 0 auto;
+        display: block;
+      }
+#profile h3 {
+        background-color:tomato;
+        padding: 1%;
+        margin: 1%;        
+      }
+#profile ul li {
+	margin-left: 10%;
+}
+
+
+/* content */
+.big {
+	width: 30%;
+	display: block;
+	color: #003a4d;
+	font-size: 2em;
+	line-height: 3em;
+	margin: 2% auto;
+	padding: 1%;
+	border-radius: 10px;
+	border: 1px solid #ababab;
+}
+.big:hover {
+	color: tomato;
+}
+.subcontent {
+	font-size: .75em;
+	line-height: 1em;
+	margin-bottom: 1em;
+}
+p {
+	margin: 2% 1% 2% 1%;
+}
+.large-cap {
+	font-size: 1.5em;
+	font-weight:bolder;
+	color: #ff5628;
+}
+.green {
+	color: #779e00;
+}
+
+/* links */
+
+#links ul li {
+	list-style-type: none;
+}
+
+#links ul li a {
+	display: block;
+	padding: 3px;
+	border-bottom: 1px solid #0a0a0a;
+	text-decoration: none;
+	color: #606060;
+}
+#links ul li a:hover {
+	background-color: tomato;
+	color: #ffffff;
+}
+
+#links ul li ul li {
+	list-style-type: none;
+}
+#links ul li ul li a {
+	display: block;
+	padding: 3px;
+	border-bottom: 1px solid #0a0a0a;
+	text-decoration: none;
+	color: #858585;
+	background-color: #dedede;
+	font-size: 0.8em;
+}
+
+/* footer */
+
+footer {
+	clear: both;
+	background-color: #ff5628;
+	padding: 1%;
+	text-align: center;
+}
