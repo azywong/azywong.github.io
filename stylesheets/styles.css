@@ -37,6 +37,9 @@ header {
 	background-color: #ffffff;
 	padding-top: 2%;
 }
+#sublinks {
+	margin-bottom: 3%;
+}
 
 /* profile */
 #profile {
@@ -60,7 +63,8 @@ header {
         display: block;
       }
 #profile h3 {
-        background-color:tomato;
+        background-color:#898989;
+        color: #ffffff;
         padding: 1%;
         margin: 1%;        
       }
@@ -72,33 +76,20 @@ header {
 /* content */
 .big {
 	width: 30%;
-	display: block;
 	color: #003a4d;
 	font-size: 2em;
-	line-height: 3em;
+	line-height: 2.15em;
 	margin: 2% auto;
 	padding: 1%;
 	border-radius: 10px;
 	border: 1px solid #ababab;
+	text-decoration: none;
 }
 .big:hover {
 	color: tomato;
 }
-.subcontent {
-	font-size: .75em;
-	line-height: 1em;
-	margin-bottom: 1em;
-}
 p {
 	margin: 2% 1% 2% 1%;
-}
-.large-cap {
-	font-size: 1.5em;
-	font-weight:bolder;
-	color: #ff5628;
-}
-.green {
-	color: #779e00;
 }
 
 /* links */
@@ -107,13 +98,6 @@ p {
 	list-style-type: none;
 }
 
-#links ul li a {
-	display: block;
-	padding: 3px;
-	border-bottom: 1px solid #0a0a0a;
-	text-decoration: none;
-	color: #606060;
-}
 #links ul li a:hover {
 	background-color: tomato;
 	color: #ffffff;
@@ -125,11 +109,11 @@ p {
 #links ul li ul li a {
 	display: block;
 	padding: 3px;
-	border-bottom: 1px solid #0a0a0a;
+	border-bottom: 1px solid #a0a0a0;
 	text-decoration: none;
-	color: #858585;
+	color: #505050;
 	background-color: #dedede;
-	font-size: 0.8em;
+	font-size: 0.85em;
 }
 
 /* footer */
