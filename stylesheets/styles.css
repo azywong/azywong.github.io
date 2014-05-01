@@ -99,7 +99,7 @@ p {
 }
 
 #links ul li a:hover {
-	background-color: tomato;
+	background-color: #454545;
 	color: #ffffff;
 }
 
@@ -120,7 +120,7 @@ p {
 
 footer {
 	clear: both;
-	background-color: #ff5628;
+	background-color: tomato;
 	padding: 1%;
 	text-align: center;
 }
