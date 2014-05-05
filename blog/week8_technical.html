@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+
+<body>
+	
+	<header>
+		<h1>U3.W8-9: Technical Blog</h1>
+	</header>
+
+	<div id="container">
+	<section id="content">
+		<article>
+		<h2>How the Internet Works</h2>
+		<h3>Date: May 4, 2014</h3>
+		<p>The internet is an indispensable part of many people's lives around the world.  It is a system of networks that connects people and faciilitiates the sharing and transfer of information.  I will attempt to briefly explain how this complex system works in today's blog post.</p>
+
+		<p>First of the internet is a system of networks, or networks of networks.  Most people have an Internet Service Provider (ISP) that they connect to, and are part of the ISP's network, which also can be a part of a larger network.  Another option for connecting to the internet is a Local Area Network (LAN) which people mainly use at say a business, and this network can also be part of the larger networks that make up the Internet.</p>
+
+		<p>Another important thing in this discussion is that the internet is not only one network, or controlled by one master network.  There are just high level networks that connect to each other through Network Access Points (NAP).  Different ISPs all over the world in different areas interconnect at various NAPs and data is interchanged at these points.</p>
+
+		<p>That's just the big picture of how computers are able to communicate through networks.  Next up is what happens when you access a webpage.</p>
+
+		<p>First off, each device (i.e. computer) has an assigned Internet Protocol address (IP address) that is unqiue.  All web address that you access, like "http://github.com," actually can be access through their corresponding IP address.  A neat thing called Domain Name System (DNS), lets you type in "github.com" and the computer will automatically link that to the right IP address to access.</p>
+
+		<p>Secondly, each machine that accesses the internet can be classified as client or server.  The difference between them is that servers host content/data and provide access to other devices, while clients access these services.  When you connect to a webpage using your computer, your computer is the client and you are accessing the webpage's server.  The server's IP address usually doesn't change often, while client IP addresses can change frequently.</p>
+
+		<p>When you access a webpage, basically your computer sends a request over the internet.  This request for information travels through networks until it hits a DNS, where it will look for a match for the domain that you entered.  If it finds the match, it will send the request to the right server's IP address.  If not, it will send your request along to another DNS that has more information.</p>
+
+		<p>When the request finally reaches the correct server, it will send the information requested along in packets.  The information is basically broken down into small parts (packets) that are sent along to you.  These packets have the IP of your computer in them so they know where to go, and they also have data of the order they need to be arranged in.  Not all the packets may travel the same path back to your computer, that way if certain parts of the internet are down or congested, it is still possible to recieve information/packets through other routes.</p>
+
+		<p>This concludes my brief explanation of how the internet works.  There are definitely more steps inbetween the ones I have listed, but this is a general breakdown for now.</p>
+		</article>
+	</section>
+
+	<nav>
+	<ul>
+		<li><a href="http://azywong.github.io/">Main Index</a></li>
+		<li>Links</li>
+		<li><ul>
+			<li><a href="https://twitter.com/pinkarrison">Twitter</a></li>
+			<li><a href="mailto:azywong@gmail.com">Email</a></li>
+		</ul></li>
+	</ul>
+	</nav>
+	</div>
+	<footer> Last updated March 2014</footer>
+
+</body>
+</html>
