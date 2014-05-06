@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SQL Cheatsheet</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/cheatsheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<header>
+		<h1>SQL Cheatsheet</h1>
+	</header>
+
+	<section id="content">
+		<p>A simple SQL command cheatsheet</p>
+
+		<h2>Select Statements</h2>
+			<p>Select statments are used in SQL to grab specfic information from a database/table.</p>
+			<blockquote>
+				<strong>SELECT</strong> column_name <strong>FROM</strong> table_name<br />
+				<strong>WHERE</strong> column_name = 'username'
+			</blockquote>
+
+		<h2>Terms</h2>		
+		<dl>
+  			 <dt>WHERE</dt>
+  			 	<dd><h3>Operators:</h3>
+  			 		<ul>
+  			 			<li><span class="title">=</span><span class="text">equal</span></li>
+  			 			<li><span class="title">!=</span><span class="text">not equal</span></li>
+  			 			<li><span class="title">&gt;</span><span class="text">greater than</span></li>  	
+  			 			<li><span class="title">&lt;</span><span class="text">less than</span></li>  
+  			 			<li><span class="title">&gt;</span><span class="text">greater than or equal to</span></li>  
+  			 			<li><span class="title">&lt;</span><span class="text">less than or equal to</span></li>  
+  			 			<li><span class="title">BETWEEN</span><span class="text">between (range is inclusive)</span></li>  
+  			 			<li><span class="title">LIKE</span><span class="text">search for a pattern</span></li>  
+  			 			<li><span class="title">IN</span><span class="text">specifies multiple possible values for a column</span></li> 
+  			 		</ul>
+  			 	
+  			   <blockquote>
+  			   		<strong>SELECT</strong> column_name, function(column)<br />
+  			   		<strong>FROM</strong> table_name<br />
+  			   		<strong>WHERE</strong> column_name operator value
+  			   </blockquote>
+  			   </dd>
+
+  			<dt>Distinct</dt>
+ 			   <dd>Lists distinct values of the column (no duplicates)
+ 			   	<blockquote>
+ 			   		<strong>SELECT</strong> <strong>DISTINCT</strong> column_name <strong>FROM</strong> table_name
+ 			   	</blockquote>
+ 			   	</dd>
+
+ 			 <dt>Group By</dt>
+  			   <dd>used to group what results you pulled by one or more columns
+  			   <blockquote>
+  			   		<strong>SELECT</strong> column_name, function(column)<br />
+  			   		<strong>FROM</strong> table_name<br />
+  			   		<strong>WHERE</strong> column_name operator value<br />
+  			   		<strong>GROUP BY</strong> column_name
+  			   </blockquote>
+  			   </dd>
+
+  			 <dt>Count</dt>
+  			 	<dd>returns number of values in the column
+  			 	<blockquote>
+  			 		<strong>SELECT</strong> <strong>COUNT</strong>(column_name)<br />
+  			 		<strong>FROM</strong> table_name
+  			 	</blockquote>
+  			 	</dd>
+
+  			 <dt>Sum</dt>
+  			 	<dd>returns total of a column (has to be numbers)
+  			 	<blockquote>
+  			 		<strong>SELECT</strong> <strong>SUM</strong>(column_name)<br />
+  			 		<strong>FROM</strong> table_name
+  			 	</blockquote>
+  			 	</dd>
+
+  			 <dt>Having</dt>
+  			 	<dd>like 'WHERE' but you can use functions
+				<blockquote>
+  			   		<strong>SELECT</strong> column_name, function(column)<br />
+  			   		<strong>FROM</strong> table_name<br />
+  			   		<strong>WHERE</strong> column_name operator value<br />
+  			   		<strong>GROUP BY</strong> column_name<br />
+  			   		<strong>HAVING</strong> function(column) operator value
+  			   </blockquote>
+  			   </dd>
+  			
+  			 <dt>Join</dt>
+  			 	<dd>used to combine rows from multiple tables, based on a common field
+  			 	<blockquote>
+  			 		<strong>SELECT</strong> column_name(s)<br />
+  			 		<strong>FROM</strong> table1<br />
+  			 		<strong>JOIN</strong> table2<br />
+  			 		<strong>ON</strong> table1.column_name = table2.column_name
+  			 	</blockquote>
+  			 	</dd>
+  		</dl>
+
+	</section>
+
+
+	<footer> <a href="http://azywong.github.io/">Back to Index</a> </footer>
+
+
+</body>
+</html>
