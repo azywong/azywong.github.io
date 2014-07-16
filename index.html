@@ -1,79 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+  <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/base.css">
+    <link rel="stylesheet" href="stylesheets/skeleton.css">
+    <link rel="stylesheet" href="stylesheets/layout.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
 </head>
 
 <body>
-	<header>
-		<h1>Allison Wong</h1>
-	</header>
-	<div id="container">
-	<section id="content">
+  <div class="container">
+    <header>
+      <h1>Allison Wong</h1>
+      <h4>Ruby on Rails and JavaScript Developer</h4>
+      <div id="contact"><a href="mailto:azywong@gmail.com">azywong@gmail.com</a> - (415) 370-1258</div>
+    </header>
 
-		<article id="sublinks">
-			<a class="big" href="http://azywong.tumblr.com/">DBC Blogging</a>
-			<a class="big" href="http://twitter.com/pinkarrison">Twitter</a>
-			<a class="big" href="mailto:azywong@gmail.com">Email</a>
-			<a class="big" href="https://www.linkedin.com/pub/allison-wong/65/436/64">LinkedIn</a>
-		</article>
+    <div id="main" class="ten columns">
+      <section id="projects">
+        <h3>Projects</h3>
+        <article class="project">
+          <h4>Amber</h4>
+          <h5><a href="http://amber-brew.herokuapp.com/">live</a> - <a href="https://github.com/fence-lizards-2014/amber">github</a></h5>
+          <p>A Rails and Javascript heavy app that allows users to choose food flavor profiles and makes beer pairing suggestions</p>
+        </article>
 
-		<article id="profile">
-    		<h2>Allison</h2>
-    		<img src="images/16b5a88.jpg">
-    		<h3>Location</h3>
-    			<p>San Francisco</p>
-    		 <h3>DBC</h3>
-    			<p>May Cohort</p>
-    		<h3>Interests</h3>
-    			<ul>
-      				<li>Drawing</li>
-      				<li>Watching Movies</li>
-      				<li>Coding!</li>
-    			</ul>
- 		</article>
+      </section>
+      <section id="experience">
+        <h3>Experience</h3>
+        <article class="experience">
+          <h4>Recent Graduate</h4>
+          <h5> - Dev Bootcamp</h5>
+          <h6>March 2014 - July 2014 | San Francisco</h6>
+          <p>Intensive web development training course.</p>
+          <li>Ruby on Rails and JavaScript full stack web development</li>
+          <li>Rspec, Capybara and Jasmine testing (TDD, BDD)</li>
+          <li>HTML5/CSS3, JQuery</li>
+          <li>Engineering Empathy</li>
+        </article>
+        <article class="experience">
+          <h4>Online Data Collection Assistant</h4>
+          <h5> - Luvocracy</h5>
+          <h6>November 2013 - March 2014 | San Francisco</h6>
+          <p>E-Commerce startup.</p>
+          <li>Collected and verified data for the Luvocracy website</li>
+          <li>Provided support for general email inquiries</li>
+          <li>Researched online resources for relevant market data</li>
+        </article>
+        <article class="experience">
+          <h4>Development Intern</h4>
+          <h5> - Asia Society</h5>
+          <h6>June 2013 - October 2013 | San Francisco</h6>
+          <p>Non-profit organization that focuses on educating the world about Asia.</p>
+          <li>Maintained and updated Raiser's Edge database of members and donors</li>
+          <li>Authored Excel spreadsheets on development monthly financial activities</li>
+          <li>Assisted in the layout and design of marketing materials</li>
+          <li>Created content for social media marketing campaign</li>
+        </article>
+        <article class="experience">
+          <h4>Language Partner</h4>
+          <h5> - Partners in Acquiring Language</h5>
+          <h6>September 2010 - June 2012 | Davis</h6>
+          <p>Language Practice Partner Program through UC Davis.</p>
+          <li>Language Partner for foreign exchange students from South Korea and Japan</li>
+          <li>Corrected student's usage of English euphemisms and grammar rules</li>
+          <li>Helped to improve students' fluency in the English language and communication skills</li>
+          <li>Created topics for discussion and conducted question-and-answer sessions</li>
+        </article>
+        <article class="experience">
+          <h4>Teaching Assistant</h4>
+          <h5> - Academic Talent Development Program</h5>
+          <h6>June 2008 - July 2009 | Berkeley</h6>
+          <p>Web design summer course, The Internet Classroom, at University of California, Berkeley.</p>
+          <li>Contributed to a team that provided personal tutoring in programming and web design</li>
+          <li>Advised students in problem solving in coding and designing their own websites</li>
+          <li>Assisted in the creation of an online student network</li>
+        </article>
+      </section>
+    </div>
 
-	</section>
+    <div id="side" class="six columns">
+      <section id="skills">
+        <h3>Skills</h3>
+        <article class="skills">
+          <ul>
+            <li>Ruby/Ruby on Rails</li>
+            <li>JavaScript</li>
+            <li>HTML/CSS</li>
+            <li>jQuery</li>
+            <li>AJAX</li>
+            <li>PostgreSQL</li>
+          </ul>
+        </article>
+      </section>
 
-	<section id="links">
-		<ul>
-			<li>Assignments</li>
-			<li>	<ul>
-					<li><a href="unit3_cheatsheet.html">SQL Cheatsheet</a></li>
-				</ul>
-			</li>
-			<li>Blog Posts</li>
-			<li>
-				<ul>
-					<li><a href="blog/week1.html">Week 1: Favorite Websites</a></li>
-					<li><a href="blog/week2_technical.html">Week 2: JavaScript</a></li>	
-					<li><a href="blog/week2_cultural_blog.html">Week 2: Exploring your values</a></li>	
-					<li><a href="blog/week3_technical.html">Week 3: Arrays vs. Hashes in Ruby</a></li>	
-					<li><a href="blog/week3_cultural.html">Week 3: Pairing and Giving Feedback</a></li>	
-					<li><a href="blog/week4_technical.html">Week 4: Ruby: Enumerable#cycle</a></li>	
-					<li><a href="blog/week4_cultural.html">Week 4: Dealing with Conflict</a></li>
-					<li><a href="blog/week5_technical.html">Week 5: When to Use Classes in Ruby</a></li>	
-					<li><a href="blog/week5_cultural.html">Week 5: Issues in Tech -- Culture</a></li>	
-					<li><a href="blog/week6_technical.html">Week 6: Functional and Object-Oriented Programming</a></li>	
-					<li><a href="blog/week6_cultural.html">Week 6: Stereotype Threat</a></li>	
-					<li><a href="blog/week7_technical.html">Week 7: SQL & NoSQL databases</a></li>	
-					<li><a href="blog/week7_cultural.html">Week 7: Affirmation and Stereotype Threat</a></li>
-					<li><a href="blog/week8.html">Week 8: Design and Blogging</a></li>				
-					<li><a href="blog/week8_technical.html">Week 8: How the Internet Works</a></li>	
-					<li><a href="blog/week8_cultural.html">Week 8: Chefs in the Kitchen</a></li>
-					<li><a href="blog/week9_technical.html">Week 9: Computer Memory</a></li>	
-					<li><a href="blog/week9_cultural.html">Week 9: Your thinking style</a></li>
-				</ul>
-			</li>
-		</ul>					
-	</section>
-	
-</div>
+      <section id="knowledge">
+        <h3>Knowledge</h3>
+        <article class="knowledge">
+          <ul>
+            <li>Object Oriented Design</li>
+            <li>MVC</li>
+            <li>RESTful Routes</li>
+            <li>Agile & Best Practices</li>
+            <li>TDD</li>
+            <li>Database Design</li>
+          </ul>
+        </article>
+      </section>
 
-	<footer> Last updated April 2014</footer>
+      <section id="education">
+        <h3>Education</h3>
+        <article class="education">
+          <h4>University of California, Davis</h4>
+          <h5>B.S. Managerial Economics</h5>
+          <h6>2008 - 2013</h6>
+        </article>
+        <article class="education">
+          <h4>The Hong Kong Polytechnic University</h4>
+          <h5>Accounting and Finance</h5>
+          <h6>School Year Abroad 2012</h6>
+        </article>
+      </section>
 
+    </div>
+
+    <footer><p><a href="https://github.com/azywong">github</a> - <a href="https://www.linkedin.com/in/allisonzywong">Linkedin</a> - <a href="http://azywong.github.io/">azywong.github.io</a></p></footer>
+
+  </div>
 
 </body>
 </html>

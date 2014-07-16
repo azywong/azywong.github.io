@@ -1,127 +1,40 @@
-
-/* general styles and layout */
-
-* {
-	margin: 0px;
-	padding: 0px;
-}
-body {
-	font-family: Trebuchet MS;
-	max-width: 1400px;
-	background-color: #ffffff;
-}
-img {
-	max-width: 100%;
-}
-#container {
-	margin: 0 auto;
-	width: 100%;
-	background-color: #ffffff;
-}
 header {
-	background-color: #003a4d;
-	padding: 1% 1% 1% 1%;
-	color: #ffffff;
+  text-align: center;
+  margin-bottom: 3%;
 }
-#content {
-	clear:both;
-	width: 65%;
-	float: left;
-	background-color: #ffffff;
-	padding: 1% 2% 2% 2%;
-	border-right:1px solid #696969;
+#contact {
 }
-#links {
-	float:left;
-	width: 29%;
-	background-color: #ffffff;
-	padding-top: 2%;
-}
-#sublinks {
-	margin-bottom: 3%;
-}
-
-/* profile */
-#profile {
-        width:45%;
-        background-color: #dedede;
-        margin: 0 auto;
-        padding: 5px;
-        border: 1px solid #ababab;
-        border-radius: 10px;
-      }
-#profile h2 {
-        background-color:white;
-        padding: 1%;
-        text-align:center;
-        margin: 1%;
-        color: tomato;
-      }
-#profile img {
-    	width:50%;
-        margin: 0 auto;
-        display: block;
-      }
-#profile h3 {
-        background-color:#898989;
-        color: #ffffff;
-        padding: 1%;
-        margin: 1%;        
-      }
-#profile ul li {
-	margin-left: 10%;
-}
-
-
-/* content */
-.big {
-	width: 30%;
-	color: #003a4d;
-	font-size: 2em;
-	line-height: 2.15em;
-	margin: 2% auto;
-	padding: 1%;
-	border-radius: 10px;
-	border: 1px solid #ababab;
-	text-decoration: none;
-}
-.big:hover {
-	color: tomato;
-}
-p {
-	margin: 2% 1% 2% 1%;
-}
-
-/* links */
-
-#links ul li {
-	list-style-type: none;
-	margin: 1%;
-}
-
-#links ul li a:hover {
-	background-color: #454545;
-	color: #ffffff;
-}
-
-#links ul li ul li {
-	list-style-type: none;
-}
-#links ul li ul li a {
-	display: block;
-	padding: 3px;
-	border-bottom: 1px solid #a0a0a0;
-	text-decoration: none;
-	color: #505050;
-	background-color: #dedede;
-	font-size: 0.85em;
-}
-
-/* footer */
-
 footer {
-	clear: both;
-	background-color: tomato;
-	padding: 1%;
-	text-align: center;
+  clear: both;
+  text-align: center;
+}
+
+h3 {
+  border-bottom: 1px solid tomato;
+}
+h4 {
+  margin-top: 2%;
+}
+h5 {
+  margin-top: -1%;
+}
+
+header h4 {
+  color: tomato;
+  margin-top: -0.5em;
+}
+li {
+  text-indent: 1em;
+}
+.experience h4 {
+  display: inline-block;
+}
+.experience h5 {
+  display: inline-block;
+}
+.experience h6 {
+  color: tomato;
+}
+.experience li {
+  line-height: 0.75em;
 }
