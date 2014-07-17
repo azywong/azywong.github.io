@@ -26,6 +26,9 @@ header h4 {
 li {
   text-indent: 1em;
 }
+#experience h3 {
+  margin-top: 0.5em;
+}
 .experience h4 {
   display: inline-block;
 }
@@ -35,6 +38,17 @@ li {
 .experience h6 {
   color: tomato;
 }
+.experience p {
+  margin-bottom: 0.5em;
+}
 .experience li {
   line-height: 0.75em;
+}
+.project h4 {
+  display: inline-block;
+  margin-right: 0.75em;
+  margin-top: 0em;
+}
+.project p {
+  margin-bottom: 0.5em;
 }
