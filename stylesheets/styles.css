@@ -25,6 +25,7 @@ header h4 {
 }
 li {
   text-indent: 1em;
+  list-style-position: inside;
 }
 #experience h3 {
   margin-top: 0.5em;
@@ -38,10 +39,17 @@ li {
 .experience h6 {
   color: tomato;
 }
-.experience h7 {
+.experience h7::before {
+  content: "\00232a";
   color: tomato;
   font-weight: bold;
-  text-transform: uppercase;
+  padding-right: 0.5em;
+}
+.experience h7 {
+  color: #444;
+  font-style: italic;
+  line-height: 2em;
+  font-weight: bold;
 }
 .experience p {
   margin-bottom: 0.5em;
