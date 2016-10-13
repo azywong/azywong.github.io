@@ -38,6 +38,11 @@ li {
 .experience h6 {
   color: tomato;
 }
+.experience h7 {
+  color: tomato;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .experience p {
   margin-bottom: 0.5em;
 }
