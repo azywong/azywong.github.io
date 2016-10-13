@@ -7,6 +7,7 @@ header {
 footer {
   clear: both;
   text-align: center;
+  padding-top: 3%;
 }
 
 h3 {
@@ -28,7 +29,7 @@ li {
   list-style-position: inside;
 }
 #projects h3 {
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 .experience h4 {
   display: inline-block;
