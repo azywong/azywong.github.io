@@ -28,7 +28,7 @@ li {
   text-indent: 1em;
   list-style-position: inside;
 }
-#projects h3 {
+#experience, #projects h3 {
   margin-top: 1em;
 }
 .experience h4 {
