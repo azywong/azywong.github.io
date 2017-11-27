@@ -11,8 +11,8 @@ li.navbar-item {
   padding: 1em;
   margin: 1px;
   background-color: tomato;
-  color: #ffffff;
 }
 li.navbar-item a {
+  color: #ffffff;
   text-decoration: none;
 }
