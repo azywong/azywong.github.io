@@ -8,4 +8,11 @@ ul.navbar-list {
 }
 li.navbar-item {
   display: inline-block;
+  padding: 1em;
+  margin: 1px;
+  background-color: tomato;
+  color: #ffffff;
+}
+li.navbar-item a {
+  text-decoration: none;
 }
