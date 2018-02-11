@@ -79,20 +79,21 @@ function draw() {
 	var previous_y = min_y;
 	for(var x in data) {
 		var y = data[x];
-		if (x >= min_x) {
+		if (x > 0) {
 			stroke('#5FA0C6');
 			line((x - min_x)*10 + 50, 500 - (y - min_y), (previous_x - min_x)*10 + 50, 500 - (previous_y - min_y));
+
+			if(mouseX >= (x - min_x)*10 + 50 - 5 && mouseX <= (x - min_x)*10 + 50 + 5 && mouseY >= 500 - (y - min_y) - 5 && mouseY <= 500 - (y - min_y) + 5) {
+				noStroke();
+				fill('#5FA0C6');
+				ellipse((x - min_x)*10 + 50, 500 - (y - min_y), 5, 5);
+				textSize(11);
+				fill('#2E4E60');
+				textAlign(CENTER);
+				text("year: " + x + ", " + y + " records", (x - min_x)*10 + 50, 490 - (y - min_y));
+			}
+			previous_x = x;
+			previous_y = y;
 		}
-		if(mouseX >= (x - min_x)*10 + 50 - 5 && mouseX <= (x - min_x)*10 + 50 + 5 && mouseY >= 500 - (y - min_y) - 5 && mouseY <= 500 - (y - min_y) + 5) {
-			noStroke();
-			fill('#5FA0C6');
-			ellipse((x - min_x)*10 + 50, 500 - (y - min_y), 5, 5);
-			textSize(11);
-			fill('#2E4E60');
-			textAlign(CENTER);
-			text("year: " + x + ", " + y + " records", (x - min_x)*10 + 50, 490 - (y - min_y));
-		}
-		previous_x = x;
-		previous_y = y;
 	}
 }
