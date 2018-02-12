@@ -5,9 +5,11 @@ var max_x = 0;
 var min_x = 0;
 var max_y = 0;
 var min_y = 0;
+var COLUMN = 34;
+var HEIGHT = 500;
 
 function preload() {
-	table = loadTable('music.csv', 'csv', 'header');
+	table = loadTable('data/music.csv', 'csv');
 }
 
 function setup() {
@@ -15,15 +17,15 @@ function setup() {
 	tableObject = table.getObject();
 
 	// format data
-	for (var key in tableObject) {
-		var x = tableObject[key].year;
-		if (x in data) {
-			data[x] += 1;
+	for (var r = 1; r < table.getRowCount(); r++) {
+		var cvalue = table.getString(r, COLUMN);
+		if (cvalue in data) {
+			data[cvalue] += 1;
 		} else {
-			data[x] = 1;
+			data[cvalue] = 1;
 		}
-		max_x = x;
-		min_x = x;
+		max_x = cvalue;
+		min_x = cvalue;
 	}
 
 	// find min/max
@@ -34,9 +36,9 @@ function setup() {
 		} else if (x < min_x && x > 0) {
 			min_x = x;
 		}
-		if (y > max_y) {
+		if (x > 0 && y > max_y) {
 			max_y = y;
-		} else if (y < min_y) {
+		} else if (x > 0 &&y < min_y) {
 			min_y = y;
 		}
 	}
@@ -48,31 +50,30 @@ function draw() {
 	// draw graph lines
 	for (var i = 0; i <= max_x - min_x + 5; i+=5) {
 		stroke('#E5E5E5');
-		line(50 + i*10, 500, 50 + i*10, 500 - (max_y - min_y));
+		line(50 + i*10, HEIGHT, 50 + i*10, HEIGHT - (max_y - min_y));
 		textSize(11);
 		fill('#E5E5E5');
 		textAlign(CENTER);
-		text(parseInt(min_x) + i, 45 + i*10, 510);
+		text(parseInt(min_x) + i, 45 + i*10, HEIGHT + 10);
 	}
-
 
 	for (var i = 0; i <= max_y - min_y; i+= 50) {
 		stroke('#E5E5E5');
-		line(50, 500 - i, (max_x - min_x + 6)*10, 500 - i);
+		line(50, HEIGHT - i, (max_x - min_x + 6)*10, HEIGHT - i);
 		textSize(11);
 		fill('#E5E5E5');
 		textAlign(RIGHT);
-		text(parseInt(min_y) + i, 45, 500 - i, 5);
+		text(parseInt(min_y) + i, 45, HEIGHT - i, 5);
 	}
 
 	// axis labels
 	fill('#667272');
 	textAlign(CENTER);
-	text("# records", 45, 45);
+	text("count", 45, HEIGHT - max_y);
 
 	fill('#667272');
 	textAlign(CENTER);
-	text("time in years", 45, 525, (max_x - min_x + 6)*10);
+	text(table.getString(0, COLUMN), 45, HEIGHT + 25, (max_x - min_x + 6)*10);
 
 	// draw lines
 	var previous_x = min_x;
@@ -81,16 +82,16 @@ function draw() {
 		var y = data[x];
 		if (x > 0) {
 			stroke('#5FA0C6');
-			line((x - min_x)*10 + 50, 500 - (y - min_y), (previous_x - min_x)*10 + 50, 500 - (previous_y - min_y));
+			line((x - min_x)*10 + 50, HEIGHT - (y - min_y), (previous_x - min_x)*10 + 50, HEIGHT - (previous_y - min_y));
 
-			if(mouseX >= (x - min_x)*10 + 50 - 5 && mouseX <= (x - min_x)*10 + 50 + 5 && mouseY >= 500 - (y - min_y) - 5 && mouseY <= 500 - (y - min_y) + 5) {
+			if(mouseX >= (x - min_x)*10 + 50 - 5 && mouseX <= (x - min_x)*10 + 50 + 5 && mouseY >= HEIGHT - (y - min_y) - 5 && mouseY <= HEIGHT - (y - min_y) + 5) {
 				noStroke();
 				fill('#5FA0C6');
-				ellipse((x - min_x)*10 + 50, 500 - (y - min_y), 5, 5);
+				ellipse((x - min_x)*10 + 50, HEIGHT - (y - min_y), 5, 5);
 				textSize(11);
 				fill('#2E4E60');
 				textAlign(CENTER);
-				text("year: " + x + ", " + y + " records", (x - min_x)*10 + 50, 490 - (y - min_y));
+				text("year: " + x + ", " + y + " records", (x - min_x)*10 + 50, HEIGHT - 10 - (y - min_y));
 			}
 			previous_x = x;
 			previous_y = y;
@@ -102,4 +103,5 @@ function draw() {
 	textAlign(CENTER);
 	textSize(32);
 	text('Number of Records over Time', ((max_x - min_x + 6)*10)/2, 50);
+
 }

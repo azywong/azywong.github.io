@@ -86,5 +86,8 @@ function draw() {
 	textAlign(CENTER);
 	text(table.getString(0, COLUMN), 50, HEIGHT + 50, 78*(number_entries + 1));
 
-
+	// draw title
+	textSize(32);
+	fill('#11100E');
+	text('various music genres by count of songs', 0, 50, x);
 }
