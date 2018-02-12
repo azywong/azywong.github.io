@@ -96,4 +96,10 @@ function draw() {
 			previous_y = y;
 		}
 	}
+
+	// draw title
+	fill('#11100E');
+	textAlign(CENTER);
+	textSize(32);
+	text('Number of Records over Time', ((max_x - min_x + 6)*10)/2, 50);
 }
