@@ -5,6 +5,8 @@ var maxHotness;
 var minHotness;
 var maxTempo;
 var minTempo;
+var maxLoudness;
+var minLoudness;
 
 function preload() {
 	table = loadTable('music.csv', 'csv', 'header');
@@ -23,19 +25,24 @@ function setup() {
 			var hotness = entry["song.hotttnesss"];
 			var tempo = entry["tempo"];
 			var releaseName = entry["release.name"];
-			if (songId && hotness && tempo && releaseName) {
+			var loudness = entry["loudness"];
+			if (songId && hotness && tempo && releaseName && loudness) {
 				tempo = parseFloat(tempo);
 				hotness = parseFloat(hotness);
+				loudness = parseFloat(loudness);
 				data[songId] = {
 					"hotness": hotness,
 					"tempo": tempo,
-					"name": releaseName
+					"name": releaseName,
+					"loudness": loudness
 				};
 				if (count == 1) {
 					maxHotness = hotness;
 					minHotness = hotness;
 					maxTempo = tempo;
 					minTempo = tempo;
+					maxLoudness = loudness;
+					minLoudness = loudness;
 				} else {
 					if (hotness > maxHotness) {
 						maxHotness = hotness;
@@ -48,6 +55,12 @@ function setup() {
 					}
 					if (tempo < minTempo) {
 						minTempo = tempo;
+					}
+					if (loudness > maxLoudness) {
+						maxLoudness = loudness;
+					}
+					if (loudness < minLoudness) {
+						minLoudness = loudness;
 					}
 				}
 				count++;
@@ -74,7 +87,7 @@ function draw () {
 		textSize(11);
 		fill('#E5E5E5');
 		textAlign(RIGHT);
-		text(minTempo + i*2, 45, 500 - i*2, 5);
+		text(minTempo + i, 45, 500 - i*2, 5);
 	}
 
 	// axis labels
@@ -94,21 +107,42 @@ function draw () {
 		var tempo = data[song].tempo;
 		var x =  50 + ((data[song].hotness - minHotness) * 750);
 		var y = 500 - ((data[song].tempo - minTempo) * 2);
+		var loudness = data[song].loudness;
+		var size = Math.abs((loudness - minLoudness)/2) + 3;
 		noStroke();
 		fill(95, 160, 198, 125);
-		ellipse(x, y, 5, 5);
+		ellipse(x, y, size, size);
 		var d = dist(mouseX, mouseY, x, y);
-		if (d <= 5) {
+		if (d < size) {
 			noStroke();
 			fill('#2E4E60');
-			ellipse(x, y, 5, 5);
+			ellipse(x, y, size, size);
 			textSize(11);
 			fill('#2E4E60');
 			textAlign(CENTER);
-			text(name + "\nhotness: " + hotness + "\ntempo: " + tempo, x, y-40);
+			text(name + "\nhotness: " + hotness + "\ntempo: " + tempo + "\nloudness: " + loudness, x, y-50);
 		}
 	}
 
+	//draw key
+	fill('#11100E');
+	textAlign(LEFT);
+	textSize(11);
+	text('Loudness', (150 + (maxHotness - minHotness)*750), 50);
+
+	for (var i = 0; i < 5; i++) {
+		var size = Math.abs((i*((maxLoudness - minLoudness)/4))/2) + 3;
+		var x = 150 + (maxHotness - minHotness)*750;
+		var y = 50 + 25*(i+1);
+		noStroke();
+		fill(95, 160, 198, 125);
+		ellipse(x, y, size, size);
+		fill('#2E4E60');
+		textAlign(LEFT);
+		textSize(11);
+		text((minLoudness + Math.abs(i*(maxLoudness - minLoudness)/4)).toFixed(3) , x + 50, y);
+
+	};
 
 	// draw title
 	fill('#11100E');
