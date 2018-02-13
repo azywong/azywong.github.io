@@ -12,7 +12,6 @@ function preload() {
 
 function setup() {
 	createCanvas(1000, 800);
-	tableObject = table.getObject();
 
 	for (var r = 1; r < table.getRowCount(); r++) {
 		var cvalue = table.getString(r, COLUMN);

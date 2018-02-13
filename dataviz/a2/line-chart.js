@@ -14,7 +14,6 @@ function preload() {
 
 function setup() {
 	createCanvas(1000, 800);
-	tableObject = table.getObject();
 
 	// format data
 	for (var r = 1; r < table.getRowCount(); r++) {
