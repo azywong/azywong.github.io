@@ -1,5 +1,4 @@
 var table;
-var tableObject;
 var data = {};
 var maxX; //tempo
 var minX;
