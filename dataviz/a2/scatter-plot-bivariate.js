@@ -17,7 +17,7 @@ function preload() {
 function setup() {
 	createCanvas(1000, 800);
 
-	// format data and find ranges
+	// find ranges
 	for (var r = 1; r < table.getRowCount(); r++) {
 		var xValue = parseFloat(table.getString(r, XCOLUMN));
 		var yValue = parseFloat(table.getString(r, YCOLUMN));
@@ -64,7 +64,7 @@ function draw () {
 	// axis labels
 	fill('#667272');
 	textAlign(CENTER);
-	text(table.getString(0, YCOLUMN), 45, 100);
+	text(table.getString(0, YCOLUMN), 45, CHARTHEIGHT - 2*(maxY - minY + 10));
 
 	fill('#667272');
 	textAlign(CENTER);

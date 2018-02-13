@@ -1,5 +1,4 @@
 var table;
-var tableObject;
 var data = {};
 var number_entries;
 var max_value;

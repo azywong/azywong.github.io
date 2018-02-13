@@ -1,5 +1,4 @@
 var table;
-var tableObject;
 var data = {};
 var max_x = 0;
 var min_x = 0;
