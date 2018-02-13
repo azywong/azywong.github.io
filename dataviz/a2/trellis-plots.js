@@ -120,7 +120,7 @@ function draw() {
 				textSize(11);
 				fill('#2E4E60');
 				textAlign(CENTER);
-				text(values[k].n + "\n" + table.getString(0, XCOLUMN) + ": " + values[k].x + "\n" + table.getString(0, YCOLUMN), xCoord, yCoord - 20, 75);
+				text(values[k].n + "\n" + table.getString(0, XCOLUMN) + ": " + values[k].x + "\n" + table.getString(0, YCOLUMN) + values[k].y, xCoord, yCoord - 20, 75);
 			}
 		}
 
