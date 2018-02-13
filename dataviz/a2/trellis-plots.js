@@ -8,7 +8,6 @@ var minY;
 var maxC;  //key
 var minC;
 var PLOT_D = 250;
-var arrayC = [];
 var XCOLUMN = 28;
 var YCOLUMN = 17;
 var CCOLUMN = 12;
@@ -25,6 +24,7 @@ function setup() {
 		var xValue = parseFloat(table.getString(r, XCOLUMN));
 		var yValue = parseFloat(table.getString(r, YCOLUMN));
 		var cValue = table.getString(r, CCOLUMN);
+		var nValue = table.getString(r, NCOLUMN);
 		if (r == 1) {
 			maxX = xValue;
 			minX = xValue;
@@ -41,52 +41,93 @@ function setup() {
 				minY = yValue;
 			}
 		}
-		if(!arrayC.includes(cValue)) {
-			arrayC.push(cValue);
+		var song = {
+			x: xValue,
+			y: yValue,
+			c: cValue,
+			n: nValue
+		}
+		if(cValue in data) {
+			data[cValue].push(song);
+		} else {
+			data[cValue] = [song];
 		}
 	}
-	arrayC.sort();
 }
 
 function draw() {
+	clear();
 	var startingX = 50;
 	var startingY = 50;
 	// draw graph lines for each plot
-	for (var i = 0; i < arrayC.length; i++) {
+	for (var i = 0; i < Object.keys(data).length; i++) {
 		if (i == 0) {
 			//values already set
 		} else if (i % 4 == 0) {
-			startingY += PLOT_D + 50;
+			startingY += PLOT_D + 100;
 			startingX = 50;
 		} else {
-			startingX += PLOT_D + 50;
+			startingX += PLOT_D + 100;
 		}
 
 		// draw horizontal lines
+		var yScale = (maxY - minY)/PLOT_D;
 		var baselineY = startingY + PLOT_D;
-		for (var j = 0; j < maxY - minY; j+=5) {
+		for (var j = 0; j <= PLOT_D + 20 ; j+= 25) {
 			stroke('#E5E5E5');
-			line(startingX, baselineY - j*5, startingX + PLOT_D, baselineY - j*5);
+			line(startingX, baselineY - j, startingX + PLOT_D, baselineY - j);
 			textSize(11);
 			fill('#E5E5E5');
 			textAlign(RIGHT);
-			text((minY + j).toFixed(2), startingX - 25, baselineY - j*5, 25);
+			text((minY + j*yScale).toFixed(2), startingX - 25, baselineY - j, 25);
 		}
 
 		// draw vertical lines
-		for (var j = 0; j < maxX - minX; j+=25) {
+		var xScale = (maxX - minX)/PLOT_D;
+		for (var j = 0; j <= PLOT_D + 20; j+= 25) {
 			stroke('#E5E5E5');
 			line(startingX + j, baselineY, startingX + j, baselineY - PLOT_D);
 			textSize(11);
 			fill('#E5E5E5');
 			textAlign(CENTER);
-			text(minX + j, startingX + j, baselineY + 15, 10);
+			if (j % 50 == 0) {
+				text((minX + xScale*j).toFixed(1), startingX + j, baselineY + 15, 10);
+			}
+		}
+
+		// axis labels
+		fill('#667272');
+		textAlign(CENTER);
+		text(table.getString(0, YCOLUMN), startingX, startingY - 10);
+
+		fill('#667272');
+		textAlign(CENTER);
+		text(table.getString(0, XCOLUMN), startingX, startingY + PLOT_D + 25, PLOT_D);
+
+		// draw dots
+		var values = data[Object.keys(data)[i]];
+		for(var k = 0; k < values.length; k++) {
+			var xCoord = (values[k].x - minX)*(PLOT_D/(maxX-minX)) + startingX;
+			var yCoord = baselineY - (values[k].y - minY)*(PLOT_D/(maxY-minY));
+			noStroke();
+			fill(95, 160, 198, 125);
+			ellipse(xCoord, yCoord, 5, 5);
+			var d = dist(mouseX, mouseY, xCoord, yCoord);
+			if (d < 5) {
+				noStroke();
+				fill('#2E4E60');
+				ellipse(xCoord, yCoord, 5, 5);
+				textSize(11);
+				fill('#2E4E60');
+				textAlign(CENTER);
+				text(values[k].n + "\n" + table.getString(0, XCOLUMN) + ": " + values[k].x + "\n" + table.getString(0, YCOLUMN), xCoord, yCoord - 20, 75);
+			}
 		}
 
 		// title
 		fill('#2e4e60');
 		textSize(15);
 		textAlign(CENTER);
-		text(table.getString(0, CCOLUMN) + ": " + arrayC[i], startingX, startingY - 5, PLOT_D);
+		text(table.getString(0, CCOLUMN) + ": " + Object.keys(data)[i], startingX, startingY - 5, PLOT_D);
 	}
 }
