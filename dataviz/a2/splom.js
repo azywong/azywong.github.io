@@ -20,7 +20,6 @@ function preload() {
 }
 
 function setup() {
-	noLoop()
 	createCanvas(1500, 1500);
 	// find ranges
 	for (var r = 1; r < table.getRowCount(); r++) {
@@ -281,16 +280,16 @@ function draw() {
 			noStroke();
 			fill(95, 160, 198, 125);
 			ellipse(xCoord, yCoord, 5, 5);
-			// var d = dist(mouseX, mouseY, xCoord, yCoord);
-			// if (d < 5) {
-			// 	noStroke();
-			// 	fill('#2E4E60');
-			// 	ellipse(xCoord, yCoord, 5, 5);
-			// 	textSize(11);
-			// 	fill('#2E4E60');
-			// 	textAlign(CENTER);
-			// 	text(data[k].n + "\n" + table.getString(0, xColumn) + ": " + data[k][xVal] + "\n" + table.getString(0, yColumn) + data[k][yVal], xCoord, yCoord - 20, 75);
-			// }
+			var d = dist(mouseX, mouseY, xCoord, yCoord);
+			if (d < 5) {
+				noStroke();
+				fill('#2E4E60');
+				ellipse(xCoord, yCoord, 5, 5);
+				textSize(11);
+				fill('#2E4E60');
+				textAlign(CENTER);
+				text(data[k].n + "\n" + table.getString(0, xColumn) + ": " + data[k][xVal] + "\n" + table.getString(0, yColumn) + data[k][yVal], xCoord, yCoord - 20, 75);
+			}
 		}
 
 		if ( i < 4) {
