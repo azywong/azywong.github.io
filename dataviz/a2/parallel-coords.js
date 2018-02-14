@@ -75,7 +75,7 @@ function draw() {
 	var hover = false;
 	var info = {};
 
-	//draw lines
+	//draw graph
 	for (var i = data.length - 1; i >= 0; i--) {
 		startingX1 = 50;
 		startingY1 = 50 + PLOT_H;
@@ -99,6 +99,8 @@ function draw() {
 		var m3 = (((startingY3-cCoord)-(startingY3 - dCoord))/((startingX3)-( startingX3 + PLOT_W)));
 		var b3 = (startingY3-cCoord) - m3*startingX3;
 		var d;
+
+		// calculating distance from mouse to line(s)
 		if (mouseX >= startingX1 && mouseX <= startingX1 + PLOT_W) {
 			d = Math.abs(mouseY - mouseX*m1 - b1);
 		} else if (mouseX >= startingX2 && mouseX <= startingX2 + PLOT_W) {
@@ -106,11 +108,14 @@ function draw() {
 		} else if  (mouseX >= startingX3 && mouseX <= startingX3 + PLOT_W) {
 			d = Math.abs(mouseY - mouseX*m3 - b3);
 		}
+
+		// draw line
 		stroke(95, 160, 198, 125);
 		line(startingX1, startingY1-aCoord, startingX1 + PLOT_W, startingY1 - bCoord);
 		line(startingX2, startingY2-bCoord, startingX2 + PLOT_W, startingY2 - cCoord);
 		line(startingX3, startingY3-cCoord, startingX3 + PLOT_W, startingY3 - dCoord);
 
+		// if mouse is over line
 		if (d <= 1 && d >= 0) {
 			hover = true;
 			info.aValue = aValue;
@@ -166,6 +171,7 @@ function draw() {
 		var scale = (maxY - minY)/PLOT_H;
 		stroke('#E5E5E5');
 		line(startingX, startingY, startingX, startingY + PLOT_H);
+
 		// draw scale
 		textSize(11);
 		fill('#E5E5E5');
@@ -173,24 +179,6 @@ function draw() {
 		text((maxY).toFixed(2), startingX, startingY - 10);
 		text((minY).toFixed(2), startingX, startingY + PLOT_H + 10);
 
-		// // draw dots
-		// for(var k = 0; k < data.length; k++) {
-		// 	var xCoord = (data[k][xVal] - minX)*(PLOT_D/(maxX-minX)) + startingX;
-		// 	var yCoord = baselineY - (data[k][yVal] - minY)*(PLOT_D/(maxY-minY));
-		// 	noStroke();
-		// 	fill(95, 160, 198, 125);
-		// 	ellipse(xCoord, yCoord, 5, 5);
-		// 	var d = dist(mouseX, mouseY, xCoord, yCoord);
-		// 	if (d < 5) {
-		// 		noStroke();
-		// 		fill('#2E4E60');
-		// 		ellipse(xCoord, yCoord, 5, 5);
-		// 		textSize(11);
-		// 		fill('#2E4E60');
-		// 		textAlign(CENTER);
-		// 		text(data[k].n + "\n" + table.getString(0, xColumn) + ": " + data[k][xVal] + "\n" + table.getString(0, yColumn) + data[k][yVal], xCoord, yCoord - 20, 75);
-		// 	}
-		// }
 		// title
 		fill('#E5E5E5');
 		textSize(11);
