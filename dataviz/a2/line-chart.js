@@ -4,6 +4,7 @@ var max_x = 0;
 var min_x = 0;
 var max_y = 0;
 var min_y = 0;
+// index of the column to use
 var COLUMN = 34;
 var HEIGHT = 500;
 

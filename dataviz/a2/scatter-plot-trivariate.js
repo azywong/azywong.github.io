@@ -6,12 +6,13 @@ var maxY; //tempo
 var minY;
 var maxZ; //loudness
 var minZ;
+// index of the column to use
 var XCOLUMN = 23;  //hotness
 var YCOLUMN = 28;  //tempo
 var ZCOLUMN = 17;  //loudness
 var NCOLUMN = 21; //name
-var FCOLUMN = 29;
-var FILTER = "hip hop"
+var FCOLUMN = 29; // filtering by this column
+var FILTER = "hip hop";  // filtering by this value in FCOLUMN
 var CHARTWIDTH = 750;
 var CHARTHEIGHT = 500;
 

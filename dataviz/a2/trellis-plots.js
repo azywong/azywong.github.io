@@ -6,7 +6,8 @@ var maxY; //loudness
 var minY;
 var maxC;  //key
 var minC;
-var PLOT_D = 250;
+var PLOT_D = 250; // plot dimensions
+// index of the column to use
 var XCOLUMN = 28;
 var YCOLUMN = 17;
 var CCOLUMN = 12;

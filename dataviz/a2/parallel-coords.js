@@ -10,6 +10,7 @@ var maxD;
 var minD;
 var PLOT_W = 250;
 var PLOT_H = 500;
+// index of the column to use
 var ACOLUMN = 28; //tempo
 var BCOLUMN = 17; //loudness
 var CCOLUMN = 23; //hotness

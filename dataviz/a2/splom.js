@@ -8,12 +8,13 @@ var maxC;
 var minC;
 var maxD;
 var minD;
-var PLOT_D = 250;
+var PLOT_D = 250; // plot dimensions
+// index of the column to use
 var ACOLUMN = 28; //tempo
 var BCOLUMN = 17; //loudness
 var CCOLUMN = 23; //hotness
 var DCOLUMN = 7; //beats_confidence
-var NCOLUMN = 21;
+var NCOLUMN = 21; // name for annotation
 
 function preload() {
 	table = loadTable('data/music.csv', 'csv',);
@@ -69,6 +70,8 @@ function setup() {
 
 function draw() {
 	clear();
+	var selected = false;
+	var selectedElement = null;
 	var startingX = 50;
 	var startingY = 50;
 	// draw graph lines for each plot
@@ -282,13 +285,16 @@ function draw() {
 			ellipse(xCoord, yCoord, 5, 5);
 			var d = dist(mouseX, mouseY, xCoord, yCoord);
 			if (d < 5) {
-				noStroke();
-				fill('#2E4E60');
-				ellipse(xCoord, yCoord, 5, 5);
-				textSize(11);
-				fill('#2E4E60');
-				textAlign(CENTER);
-				text(data[k].n + "\n" + table.getString(0, xColumn) + ": " + data[k][xVal] + "\n" + table.getString(0, yColumn) + data[k][yVal], xCoord, yCoord - 20, 75);
+				selected = true;
+				selectedElement = {
+					k: k,
+					xCoord: xCoord,
+					yCoord: yCoord,
+					xVal: xVal,
+					yVal: yVal,
+					xColumn: xColumn,
+					yColumn: yColumn
+				};
 			}
 		}
 
@@ -300,4 +306,18 @@ function draw() {
 			text(table.getString(0, xColumn), startingX, startingY - 5, PLOT_D);
 		}
 	}
+	if (selected) {
+		drawSelected(selectedElement);
+	};
+}
+
+function drawSelected(selectedElement) {
+	noStroke();
+	fill('#2E4E60');
+	ellipse(selectedElement.xCoord, selectedElement.yCoord, 5, 5);
+	textSize(11);
+	fill('#2E4E60');
+	textAlign(CENTER);
+	text(data[selectedElement.k].n + "\n" + table.getString(0, selectedElement.xColumn) + ": " + data[selectedElement.k][selectedElement.xVal] + "\n" + table.getString(0, selectedElement.yColumn) + data[selectedElement.k][selectedElement.yVal], selectedElement.xCoord, selectedElement.yCoord - 20, 75);
+
 }

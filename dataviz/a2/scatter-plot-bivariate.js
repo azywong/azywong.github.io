@@ -3,7 +3,7 @@ var maxX;
 var minX;
 var maxY;
 var minY;
-
+// index of the column to use
 var XCOLUMN = 23; //hotness
 var YCOLUMN = 28; //tempo
 var NCOLUMN = 21; //name
