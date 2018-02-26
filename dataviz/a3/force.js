@@ -4,7 +4,7 @@ var WIDTH = 1000;
 var HEIGHT = 1000;
 var	AREA = WIDTH * HEIGHT;
 var K;
-var ITERATIONS = 5;
+var ITERATIONS = 1;
 var inputDir;
 var TEMPERATURE = 25;
 var SIZE = 5;
@@ -27,13 +27,17 @@ function setup() {
 			}
 		}
 	}
+
 	K = Math.sqrt(AREA/Object.keys(vertices).length);
+
 	assignRandom();
+
 	for (var i = 0; i < ITERATIONS; i++) {
 			calculateRepulsion();
 			calculateAttraction();
 			limitMaxTemp();
 			TEMPERATURE -= 1;
+			debugger
 	};
 }
 
@@ -64,13 +68,13 @@ function draw () {
 		noStroke();
 		ellipse(x, y, SIZE, SIZE);
 	}
-	for (var edge in edges) {
-		v1 = edge[0];
-		v2 = edge[1];
-		x1 = vertices.get(v1)[0];
-		y1 = vertices.get(v1)[1];
-		x2 = vertices.get(v2)[0];
-		y2 = vertices.get(v2)[1];
+	for (var e in edges) {
+		v1 = edges[e][0];
+		v2 = edges[e][1];
+		x1 = vertices[v1][0];
+		y1 = vertices[v1][1];
+		x2 = vertices[v2][0];
+		y2 = vertices[v2][1];
 		stroke(95, 160, 198, 125);
 		line(x1, y1, x2, y2);
 	}
@@ -115,8 +119,8 @@ function calculateAttraction () {
 		var v = vertices[vKey];
 		var u = vertices[uKey];
 		var delta = dist(v[0], v[1], u[0], u[1]);
-		var vdisp = vdisp - (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));
-		var udisp = udisp + (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));;
+		var vdisp = vertices[vKey][2] - (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));
+		var udisp = vertices[uKey][2] + (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));;
 		vertices[vKey][2] = vdisp;
 		vertices[uKey][2] = udisp;
 	}
@@ -127,6 +131,6 @@ function limitMaxTemp() {
 		vertices[v][0] = vertices[v][0] + (vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE);
 		vertices[v][1] = vertices[v][1] + (vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE);
 		vertices[v][0] = min(WIDTH/2, max(-WIDTH/2, vertices[v][0]));
-		vertices[v][1] = min(HEIGHT/2, max(-HEIGHT/2, vertices[v][1]))
+		vertices[v][1] = min(HEIGHT/2, max(-HEIGHT/2, vertices[v][1]));
 	}
 }
