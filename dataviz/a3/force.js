@@ -4,8 +4,10 @@ var WIDTH = 1000;
 var HEIGHT = 1000;
 var	AREA = WIDTH * HEIGHT;
 var K;
-var ITERATIONS = 25;
+var ITERATIONS = 5;
 var inputDir;
+var TEMPERATURE = 25;
+var SIZE = 5;
 
 function preload() {
 	inputDir = loadStrings('data/facebook/', inputHandler);
@@ -13,47 +15,65 @@ function preload() {
 
 function setup() {
 	createCanvas(1000, 1000);
-	for(var key in data) {
-		for (var i = 0; i < data[key].length; i++) {
-			var stringData = data[key][i].split(" ");
-			data[key][i] = [parseInt(stringData[0]), parseInt(stringData[1])];
-			if (data[key][i]) {
-				var v1 = data[key][i][0];
-				var v2 = data[key][i][1];
-				if (!vertices[v1]) {
-					vertices[v1] = [];
-				} if (!vertices[v2]) {
-					vertices[v2] = [];
-				}
+
+	for(var e in edges) {
+		if (edges[e]) {
+			var v1 = edges[e][0];
+			var v2 = edges[e][1];
+			if (!vertices[v1]) {
+				vertices[v1] = [];
+			} if (!vertices[v2]) {
+				vertices[v2] = [];
 			}
-		};
+		}
 	}
 	K = Math.sqrt(AREA/Object.keys(vertices).length);
 	assignRandom();
 	for (var i = 0; i < ITERATIONS; i++) {
-		calculateRepulsion();
-		calculateAttraction();
+			calculateRepulsion();
+			calculateAttraction();
+			limitMaxTemp();
+			TEMPERATURE -= 1;
 	};
 }
 
-function inputHandler(r) {
+function inputHandler(inputDir) {
 	var re = new RegExp('(\\d+\.edges)');
 	for (var i = inputDir.length - 1; i >= 0; i--) {
 		if (inputDir[i].search(re)) {
 			var file = inputDir[i].match(re);
 			if (file !== null) {
-				var result = loadStrings("data/facebook/" + file[0], fileHandler);
-				edges.concat(result);
+				loadStrings("data/facebook/" + file[0], fileHandler);
 			}
 		}
 	};
 }
 
 function fileHandler(r) {
-
+	for (var i = 0; i < r.length; i++) {
+		var stringData = r[i].split(" ");
+		edges.push([parseInt(stringData[0]), parseInt(stringData[1])]);
+	};
 }
 
 function draw () {
+	for (var v in vertices) {
+		var x = vertices[v][0];
+		var y = vertices[v][1];
+		fill(95, 160, 198, 125);
+		noStroke();
+		ellipse(x, y, SIZE, SIZE);
+	}
+	for (var edge in edges) {
+		v1 = edge[0];
+		v2 = edge[1];
+		x1 = vertices.get(v1)[0];
+		y1 = vertices.get(v1)[1];
+		x2 = vertices.get(v2)[0];
+		y2 = vertices.get(v2)[1];
+		stroke(95, 160, 198, 125);
+		line(x1, y1, x2, y2);
+	}
 
 }
 
@@ -64,11 +84,11 @@ function assignRandom() {
 }
 
 function fAttraction(x) {
-	return x*x/k;
+	return x*x/K;
 }
 
 function fRepulsion(x) {
-	return k*k/x;
+	return K*K/x;
 }
 
 function sortNum(a,b) {
@@ -82,6 +102,7 @@ function calculateRepulsion() {
 			if (u != v) {
 				var delta = dist(vertices[v][0], vertices[v][1], vertices[u][0], vertices[u][1]);
 				vdisp = vdisp + (delta/Math.abs(delta))*fRepulsion(Math.abs(delta));
+				vertices[v][2] = vdisp;
 			}
 		}
 	}
@@ -89,10 +110,23 @@ function calculateRepulsion() {
 
 function calculateAttraction () {
 	for (var i = 0; i < edges.length; i++) {
-		var v = edges[i][0];
-		var u = edges[i][1];
-		var delta = v - u;
-		var vdisp =
-		var udisp =
-	};
+		var vKey = edges[i][0];
+		var uKey = edges[i][1];
+		var v = vertices[vKey];
+		var u = vertices[uKey];
+		var delta = dist(v[0], v[1], u[0], u[1]);
+		var vdisp = vdisp - (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));
+		var udisp = udisp + (delta/Math.abs(delta)) * (fAttraction(Math.abs(delta)));;
+		vertices[vKey][2] = vdisp;
+		vertices[uKey][2] = udisp;
+	}
+}
+
+function limitMaxTemp() {
+	for(var v in vertices) {
+		vertices[v][0] = vertices[v][0] + (vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE);
+		vertices[v][1] = vertices[v][1] + (vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE);
+		vertices[v][0] = min(WIDTH/2, max(-WIDTH/2, vertices[v][0]));
+		vertices[v][1] = min(HEIGHT/2, max(-HEIGHT/2, vertices[v][1]))
+	}
 }
