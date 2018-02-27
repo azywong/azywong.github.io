@@ -8,7 +8,7 @@ var WIDTH = 800;
 var HEIGHT = 800;
 var	AREA = WIDTH * HEIGHT;
 var K;
-var ITERATIONS = 25;
+var ITERATIONS = 1;
 var inputDir;
 var TEMPERATURE = WIDTH/10;
 var SIZE = 10;
@@ -63,9 +63,8 @@ function draw () {
 		clear();
 		calculateRepulsion();
 		calculateAttraction();
-		limitMaxTemp();
-		TEMPERATURE = TEMPERATURE*0.9 + 1;
-
+		limitMaxDisp();
+		TEMPERATURE = TEMPERATURE/5;
 		for (var e in edges) {
 			x1 = vertices[edges[e][0]][0];
 			y1 = vertices[edges[e][0]][1];
@@ -79,16 +78,16 @@ function draw () {
 			var y = vertices[v][1];
 			var d = dist(mouseX, mouseY, x, y);
 			if (d < SIZE) {
-				// for (var e in edges) {
-				// 	if (edges[e][0] == v || edges[e][1] == v ) {
-				// 		x1 = vertices[edges[e][0]][0];
-				// 		y1 = vertices[edges[e][0]][1];
-				// 		x2 = vertices[edges[e][1]][0];
-				// 		y2 = vertices[edges[e][1]][1];
-				// 		stroke('#2E4E60');
-				// 		line(x1, y1, x2, y2);
-				// 	}
-				// }
+				for (var e in edges) {
+					if (edges[e][0] == v || edges[e][1] == v ) {
+						x1 = vertices[edges[e][0]][0];
+						y1 = vertices[edges[e][0]][1];
+						x2 = vertices[edges[e][1]][0];
+						y2 = vertices[edges[e][1]][1];
+						stroke(95, 160, 198, 125);
+						line(x1, y1, x2, y2);
+					}
+				}
 				noStroke();
 				fill('#2E4E60');
 				ellipse(x, y, SIZE, SIZE);
@@ -184,21 +183,18 @@ function calculateAttraction () {
 	}
 }
 
-function limitMaxTemp() {
+function limitMaxDisp() {
 	for(var v in vertices) {
+		// if disp is not 0
 		if (vertices[v][2] !== 0) {
+			//algorithm: v.pos := v.pos + (v.disp/|v.disp|) ∗ min(v.disp, t);
 			var v0 = vertices[v][0] + ((vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE));
-			var x = min(WIDTH/2, max(-WIDTH/2, v0));
+			var x = min(WIDTH, max(1, v0));
 			vertices[v][0] = x;
 		} if (vertices[v][3] !== 0) {
 			var v1 = vertices[v][1] + (vertices[v][3]/Math.abs(vertices[v][3])) * min(vertices[v][3], TEMPERATURE);
-			var y = min(HEIGHT/2, max(-HEIGHT/2, v1));
+			var y = min(HEIGHT, max(1, v1));
 			vertices[v][1] = y;
 		}
-		// if (!vertices[v][0] || !vertices[v][1]) {
-		// 	console.log("vertices[v][0] or vertices[v][1] was NaN");
-		// 	console.log("vertices[v][0] " + vertices[v][0]);
-		// 	console.log("vertices[v][1] " + vertices[v][1]);
-		// }
 	}
 }
