@@ -53,15 +53,18 @@ function draw () {
 		var c1 = Math.floor(map(v1, 0, vertices.length - 1, 1, WIDTH, true));
 		var c2 = Math.floor(map(v2, 0, vertices.length - 1, 1, HEIGHT, true));
 		var scale = Math.ceil(map(1, 0, vertices.length - 1, 1, WIDTH, true));
-		fill(95, 160, 198, 125);
+		fill('rgba(95, 160, 198, 0.5)');
 		noStroke();
 		rect(c1, c2, scale, scale);
 
 		if(mouseX >= c1 - 1 && mouseX <= c1 + scale + 1 && mouseY >= c2 - 1 && mouseY <= c2 + scale + 1) {
 			textSize(11);
 			fill('#2E4E60');
-			textAlign(CENTER);
-			text( edges[key][0] + ", " + edges[key][1], c1, c2 + 10);
+			textAlign(LEFT);
+			text(edges[key][0] + ", " + edges[key][1], c1 + scale + 3, c2 + scale/2);
+			fill('#2E4E60');
+			noStroke();
+			rect(c1, c2, scale, scale);
 		}
 	}
 }
