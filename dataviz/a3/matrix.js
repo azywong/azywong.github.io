@@ -12,14 +12,12 @@ function setup() {
 	createCanvas(1000, 1000);
 
 	for(var e in edges) {
-		if (edges[e]) {
-			var v1 = edges[e][0];
-			var v2 = edges[e][1];
-			if (!vertices.includes(v1)) {
-				vertices.push(v1);
-			} if (!vertices.includes(v2)) {
-				vertices.push(v1);
-			}
+		var v1 = edges[e][0];
+		var v2 = edges[e][1];
+		if (!vertices.includes(v1)) {
+			vertices.push(v1);
+		} if (!vertices.includes(v2)) {
+			vertices.push(v2);
 		}
 	}
 
@@ -52,9 +50,9 @@ function draw () {
 	for (var key in edges) {
 		var v1 = vertices.indexOf(edges[key][0]);
 		var v2 = vertices.indexOf(edges[key][1]);
-		var c1 = Math.floor(map(v1, min, max, 1, WIDTH));
-		var c2 = Math.floor(map(v2, min, max, 1, HEIGHT));
-		var scale = Math.ceil(map(1.2, min, max, 1, WIDTH));
+		var c1 = Math.floor(map(v1, 0, vertices.length - 1, 1, WIDTH, true));
+		var c2 = Math.floor(map(v2, 0, vertices.length - 1, 1, HEIGHT, true));
+		var scale = Math.ceil(map(1, 0, vertices.length - 1, 1, WIDTH, true));
 		fill(95, 160, 198, 125);
 		noStroke();
 		rect(c1, c2, scale, scale);
