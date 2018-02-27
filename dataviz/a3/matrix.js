@@ -47,12 +47,13 @@ function draw () {
 	clear();
 	var min = vertices[0];
 	var max = vertices[vertices.length - 1];
+	var scale = Math.floor(map(1, 0, vertices.length - 1, 1, WIDTH, true));
+
 	for (var key in edges) {
 		var v1 = vertices.indexOf(edges[key][0]);
 		var v2 = vertices.indexOf(edges[key][1]);
-		var c1 = Math.floor(map(v1, 0, vertices.length - 1, 1, WIDTH, true));
-		var c2 = Math.floor(map(v2, 0, vertices.length - 1, 1, HEIGHT, true));
-		var scale = Math.ceil(map(1, 0, vertices.length - 1, 1, WIDTH, true));
+		var c1 = 100 + v1*scale;
+		var c2 = 100 + v2*scale;
 		fill('rgba(95, 160, 198, 0.5)');
 		noStroke();
 		rect(c1, c2, scale, scale);
@@ -66,6 +67,28 @@ function draw () {
 			noStroke();
 			rect(c1, c2, scale, scale);
 		}
+	}
+
+	for (var i = 0; i < Object.keys(vertices).length; i++) {
+		var v = vertices[Object.keys(vertices)[i]];
+		var x = 100 + i*scale;
+		var y = 100 + i*scale;
+		textSize(11);
+		fill('#2E4E60');
+		textAlign(RIGHT, CENTER);
+		text(v, 50, y, 50, scale);
+	}
+
+	translate(100 - scale, 100)
+	rotate(-HALF_PI);
+
+	for (var i = 0; i < Object.keys(vertices).length; i++) {
+		var v = vertices[Object.keys(vertices)[i]];
+		translate(0, scale);
+		textSize(11);
+		fill('#2E4E60');
+		textAlign(LEFT, CENTER);
+		text(v, 0, 0, 50, scale);
 	}
 }
 
