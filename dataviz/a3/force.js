@@ -69,6 +69,7 @@ function draw () {
 		calculateAttraction();
 		limitMaxDisp();
 		cool();
+	};
 
 		for (var e in edges) {
 			x1 = vertices[edges[e][0]][0];
@@ -116,7 +117,6 @@ function draw () {
 	// 	stroke(95, 160, 198, 125);
 	// 	line(x1, y1, x2, y2);
 	// }
-	};
 
 }
 
@@ -193,11 +193,11 @@ function limitMaxDisp() {
 		// if disp is not 0
 		if (vertices[v][2] !== 0) {
 			//algorithm: v.pos := v.pos + (v.disp/|v.disp|) ∗ min(v.disp, t);
-			var v0 = vertices[v][0] + ((vertices[v][2]/Math.abs(vertices[v][2])) * min(vertices[v][2], TEMPERATURE));
+			var v0 = vertices[v][0] + vertices[v][2]/Math.abs(vertices[v][2]);
 			var x = min(WIDTH - 10, max(10, v0));
 			vertices[v][0] = x;
 		} if (vertices[v][3] !== 0) {
-			var v1 = vertices[v][1] + (vertices[v][3]/Math.abs(vertices[v][3])) * min(vertices[v][3], TEMPERATURE);
+			var v1 = vertices[v][1] + vertices[v][3]/Math.abs(vertices[v][3]);
 			var y = min(HEIGHT - 10, max(10, v1));
 			vertices[v][1] = y;
 		}
