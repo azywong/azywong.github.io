@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="d3.js"></script>
+	</head>
+<body>
+ 	<script type="text/javascript">
+ 		var w = 700;
+ 		var h = 500;
+ 		var padding = {
+ 			left: 50,
+ 			right: 10,
+ 			bottom: 50,
+ 			top: 10
+ 		}
+ 		var barPadding = 2;
+ 		var xScale = d3.scaleLinear();
+ 		var yScale = d3.scaleLinear();
+ 		d3.csv("data/classics.csv", function (data) {
+ 			data.forEach(function (d) {
+				d["automated readability index"] = +d["automated readability index"];
+				d["average letter per word"] = +d["average letter per word"];
+				d["average sentence length"] = +d["average sentence length"];
+				d["average sentence per word"] = +d["average sentence per word"];
+				d["birth"] = +d["birth"];
+				d["characters"] = +d["characters"];
+				d["coleman liau index"] = +d["coleman liau index"];
+				d["dale chall readability score"] = +d["dale chall readability score"];
+				d["day"] = +d["day"];
+				d["death"] = +d["death"];
+				d["difficult words"] = +d["difficult words"];
+				d["downloads"] = +d["downloads"];
+				d["flesch kincaid grade"] = +d["flesch kincaid grade"];
+				d["flesch reading ease"] = +d["flesch reading ease"];
+				d["gunning fog"] = +d["gunning fog"];
+				d["id"] = +d["id"];
+				d["linsear write formula"] = +d["linsear write formula"];
+				d["month"] = +d["month"];
+				d["polarity"] = +d["polarity"];
+				d["polysyllables"] = +d["polysyllables"];
+				d["rank"] = +d["rank"];
+				d["sentences"] = +d["sentences"];
+				d["smog index"] = +d["smog index"];
+				d["subjectivity"] = +d["subjectivity"];
+				d["syllables"] = +d["syllables"];
+				d["total"] = +d["total"];
+				d["words"] = +d["words"];
+				d["year"] = +d["year"];
+			});
+
+			console.log("max words: " + d3.max(data, function (d, i) {
+				return d.words;
+			}));
+			console.log("min words: " + d3.min(data, function (d, i) {
+				return d.words;
+			}));
+			console.log("max d words: " + d3.max(data, function (d, i) {
+				return d["difficult words"];
+			}));
+			console.log("min dwords: " + d3.min(data, function (d, i) {
+				return d["difficult words"];
+			}));
+
+	 		// define the canvas
+	 		var svg = d3.select("body")
+	 			.append("svg")
+	 			.attr("width", w)
+	 			.attr("height", h)
+
+			xScale.domain(
+				[0, d3.max(data, function (d, i) {
+					return d.words;
+				})]
+			).range([padding.left, w - padding.left - padding.right]);
+
+	 		yScale.domain(
+	 			[0, d3.max(data, function (d, i){
+			    	return d["difficult words"];
+			    })]
+	 		).range([h - padding.bottom - padding.top, padding.bottom]);
+
+	 		svg.selectAll("circle")
+	 			.data(data)
+	 			.enter()
+	 			.append("circle")
+				.attr("fill", "rgb(95, 160, 198, 150)")
+	 			.attr("cx", function (d) {
+	 				return xScale(d.words);
+	 			})
+	 			.attr("cy", function (d) {
+	 				return yScale(d["difficult words"]);
+	 			})
+	 			.attr("r", 5);
+
+	 		var xAxis = d3.axisBottom(xScale);
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + 0 + ", "+ (h - padding.bottom - padding.top) + ")")
+				.call(xAxis)
+				.append("text")
+				.attr("fill", "#000")
+				.attr("y", 6)
+				.attr("x", w - padding.right)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("Words");
+
+			var yAxis = d3.axisLeft(yScale);
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + padding.left + ", " + 0 + ")")
+				.call(yAxis)
+				.append("text")
+				.attr("fill", "#000")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 6)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("Difficult Words");
+		});
+
+ 	</script>
+</body>
+</html>
