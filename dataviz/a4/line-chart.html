@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="d3.js"></script>
+	</head>
+<body>
+ 	<script type="text/javascript">
+ 		var w = 700;
+ 		var h = 500;
+ 		var padding = {
+ 			left: 25,
+ 			right: 10,
+ 			bottom: 50,
+ 			top: 10
+ 		}
+ 		var barPadding = 2;
+ 		var dataset = [];
+ 		d3.csv("data/classics.csv", function (data) {
+ 			data.forEach(function (d) {
+				d["automated readability index"] = +d["automated readability index"];
+				d["average letter per word"] = +d["average letter per word"];
+				d["average sentence length"] = +d["average sentence length"];
+				d["average sentence per word"] = +d["average sentence per word"];
+				d["birth"] = +d["birth"];
+				d["characters"] = +d["characters"];
+				d["coleman liau index"] = +d["coleman liau index"];
+				d["dale chall readability score"] = +d["dale chall readability score"];
+				d["day"] = +d["day"];
+				d["death"] = +d["death"];
+				d["difficult words"] = +d["difficult words"];
+				d["downloads"] = +d["downloads"];
+				d["flesch kincaid grade"] = +d["flesch kincaid grade"];
+				d["flesch reading ease"] = +d["flesch reading ease"];
+				d["gunning fog"] = +d["gunning fog"];
+				d["id"] = +d["id"];
+				d["linsear write formula"] = +d["linsear write formula"];
+				d["month"] = +d["month"];
+				d["polarity"] = +d["polarity"];
+				d["polysyllables"] = +d["polysyllables"];
+				d["rank"] = +d["rank"];
+				d["sentences"] = +d["sentences"];
+				d["smog index"] = +d["smog index"];
+				d["subjectivity"] = +d["subjectivity"];
+				d["syllables"] = +d["syllables"];
+				d["total"] = +d["total"];
+				d["words"] = +d["words"];
+				d["year"] = +d["year"];
+				var found = false;
+				for (var i = 0; i < dataset.length; i++) {
+					if (dataset[i][0] === d.year) {
+						dataset[i][1] += 1;
+						found = true;
+					}
+				};
+				if (!found) {
+					dataset.push([d.year, 1]);
+				}
+			});
+
+			dataset.sort();
+
+	 		// define the canvas
+	 		var svg = d3.select("body")
+	 			.append("svg")
+	 			.attr("width", w)
+	 			.attr("height", h)
+
+	 		var xScale = d3.scaleBand()
+				.domain(dataset.map(function (d, i) {
+					return d[0];
+				}))
+				.rangeRound([padding.left, w - padding.left - padding.right]).padding(0.1);
+
+	 		var yScale = d3.scaleLinear()
+			    .domain([0, d3.max(dataset, function (d, i){
+			    	return d[1];
+			    })])
+			    .rangeRound([h - padding.bottom - padding.top, padding.bottom]);
+
+	 		var line = d3.line()
+				.x(function(dataset, i) { return xScale(dataset[0]); })
+				.y(function(dataset, i) { return yScale(dataset[1]); });
+
+	 		var xAxis = d3.axisBottom(xScale)
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + 0 + ", "+ (h - padding.bottom - padding.top) + ")")
+				.call(function(g) {
+					g.call(xAxis);
+					g.selectAll(".tick text")
+						.attr("transform", "rotate(45)")
+						.attr("text-anchor", "start");
+				});
+
+			var yAxis = d3.axisLeft(yScale);
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + padding.left + ", " + 0 + ")")
+				.call(yAxis)
+				.append("text")
+				.attr("fill", "#000")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 6)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("Number of Records");
+
+			svg.append("path")
+				.datum(dataset)
+				.attr("fill", "none")
+				.attr("stroke", "steelblue")
+				.attr("stroke-linejoin", "round")
+				.attr("stroke-linecap", "round")
+				.attr("stroke-width", 1.5)
+				.attr("d", line);
+		});
+
+ 	</script>
+</body>
+</html>

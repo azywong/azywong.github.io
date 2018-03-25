@@ -6,10 +6,14 @@
 <body>
 	<a href="https://bl.ocks.org/mbostock/7555321">reference used for wrapping labels</a>
  	<script type="text/javascript">
- 		var w = 700;
- 		var h = 500;
- 		var bottomPadding = 50;
- 		var leftPadding = 50;
+ 		var w = 800;
+ 		var h = 600;
+ 		var padding = {
+ 			bottom: 50,
+ 			top: 10,
+ 			left: 50,
+ 			right: 10
+ 		}
  		var barPadding = 2;
  		var dataset = [];
  		d3.csv("data/classics.csv", function (data) {
@@ -62,40 +66,54 @@
 				.domain(dataset.map(function (d) {
 					return d["title"];
 				}))
-				.rangeRound([0, w - leftPadding]).padding(0.1);
+				.rangeRound([padding.left, w - padding.left]).padding(0.1);
 
 	 		var yScale = d3.scaleLinear()
 			    .domain([0, d3.max(dataset, function (d){
 			    	return d["difficult words"];
 			    })])
-			    .rangeRound([h - bottomPadding, 0]);
+			    .rangeRound([h - padding.bottom, padding.left]);
 
 	 		rects.attr("x", function (d, i) {
-	 				return xScale(d.title) + leftPadding;
+	 				return xScale(d.title);
 	 			})
 	 			.attr("y", function (d) {
 	 				return yScale(d["difficult words"]);
 	 			})
 	 			.attr("width", xScale.bandwidth())
 	 			.attr("height", function (d) {
-	 				return h - bottomPadding - yScale(d["difficult words"]);
+	 				return h - padding.bottom - yScale(d["difficult words"]);
 	 			})
 	 			.attr("fill", "#5FA0C6");
 
 	 		var xAxis = d3.axisBottom(xScale)
 
 	 		svg.append("g")
-	 			.attr("transform", "translate(" + leftPadding + ", "+ (h - bottomPadding) + ")")
+	 			.attr("transform", "translate(" + 0 + ", "+ (h - padding.bottom) + ")")
 				.call(function(g) {
 					g.call(xAxis);
-					g.selectAll(".tick text").call(wrap, (w - leftPadding)/dataset.length);
-				});
+					g.selectAll(".tick text").call(wrap, xScale.bandwidth());
+				})
+				.append("text")
+				.attr("fill", "#000")
+				.attr("y", 6)
+				.attr("x", w - padding.right)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("title");
 
 			var yAxis = d3.axisLeft(yScale);
 
 	 		svg.append("g")
-	 			.attr("transform", "translate(" + leftPadding + ", "+ 0 + ")")
-				.call(yAxis);
+	 			.attr("transform", "translate(" + padding.left + ", "+ 0 + ")")
+				.call(yAxis)
+				.append("text")
+				.attr("fill", "#000")
+				.attr("transform", "rotate(-90)")
+				.attr("y", 6)
+				.attr("dy", "0.71em")
+				.attr("text-anchor", "end")
+				.text("Downloads");
 		});
 
 		function wrap(text, width) {
