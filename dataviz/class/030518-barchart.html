@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="d3.js"></script>
+		<style type="text/css">
+			/* default style rules are defined here in this example */
+			.bar {
+				background-color: tomato;
+				width: 20px;
+				display: inline-block;
+				margin: 2px;
+			}
+			.bar:hover {
+				background-color: lightgray;
+			}
+		</style>
+	</head>
+<body>
+ 	<script type="text/javascript">
+ 		var dataset = [];
+ 		for (var i = 0; i < 25; i++) {
+ 			dataset.push(Math.random() * 30);
+ 		};
+ 		d3.select("body").selectAll("div")
+ 			.data(dataset)
+ 			.enter()
+ 			.append("div")
+ 			.attr("class", "bar")
+ 			.style("height", function (d) {
+ 				var barHeight = d * 5;
+ 				return barHeight + "px";
+ 			})
+ 	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="d3.js"></script>
+		<style type="text/css">
+		</style>
+	</head>
+<body>
+ 	<script type="text/javascript">
+ 		var w = 700;
+ 		var h = 500;
+ 		var barPadding = 2;
+ 		var dataset = [];
+ 		for (var i = 0; i < 25; i++) {
+ 			dataset.push(Math.random() * 25);
+ 		};
+ 		// define the canvas
+ 		var svg = d3.select("body")
+ 			.append("svg")
+ 			.attr("width", w)
+ 			.attr("height", h)
+
+ 		var rects = svg.selectAll("rect")
+ 			.data(dataset)
+ 			.enter()
+ 			.append("rect");
+
+ 		rects.attr("x", function (d, i) {
+ 				return i * (w / dataset.length);
+ 			})
+ 			.attr("y", function (d) {
+ 				return h - (d * 15);
+ 			})
+ 			.attr("width", w / dataset.length - barPadding)
+ 			.attr("height", function (d) {
+ 				return d * 15;
+ 			});
+ 	</script>
+</body>
+</html>
