@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="d3.js"></script>
+	</head>
+<body>
+	<a href="https://bl.ocks.org/mbostock/7555321">reference used for wrapping labels</a>
+ 	<script type="text/javascript">
+ 		var w = 700;
+ 		var h = 500;
+ 		var bottomPadding = 50;
+ 		var leftPadding = 50;
+ 		var barPadding = 2;
+ 		var dataset = [];
+ 		d3.csv("data/classics.csv", function (data) {
+ 			data.forEach(function(d) {
+				d["automated readability index"] = +d["automated readability index"];
+				d["average letter per word"] = +d["average letter per word"];
+				d["average sentence length"] = +d["average sentence length"];
+				d["average sentence per word"] = +d["average sentence per word"];
+				d["birth"] = +d["birth"];
+				d["characters"] = +d["characters"];
+				d["coleman liau index"] = +d["coleman liau index"];
+				d["dale chall readability score"] = +d["dale chall readability score"];
+				d["day"] = +d["day"];
+				d["death"] = +d["death"];
+				d["difficult words"] = +d["difficult words"];
+				d["downloads"] = +d["downloads"];
+				d["flesch kincaid grade"] = +d["flesch kincaid grade"];
+				d["flesch reading ease"] = +d["flesch reading ease"];
+				d["gunning fog"] = +d["gunning fog"];
+				d["id"] = +d["id"];
+				d["linsear write formula"] = +d["linsear write formula"];
+				d["month"] = +d["month"];
+				d["polarity"] = +d["polarity"];
+				d["polysyllables"] = +d["polysyllables"];
+				d["rank"] = +d["rank"];
+				d["sentences"] = +d["sentences"];
+				d["smog index"] = +d["smog index"];
+				d["subjectivity"] = +d["subjectivity"];
+				d["syllables"] = +d["syllables"];
+				d["total"] = +d["total"];
+				d["words"] = +d["words"];
+				d["year"] = +d["year"];
+				if (d["downloads"] > 10000) {
+					dataset.push(d);
+				}
+			});
+
+	 		// define the canvas
+	 		var svg = d3.select("body")
+	 			.append("svg")
+	 			.attr("width", w)
+	 			.attr("height", h)
+
+	 		var rects = svg.selectAll("rect")
+	 			.data(dataset)
+	 			.enter()
+	 			.append("rect");
+
+	 		var xScale = d3.scaleBand()
+				.domain(dataset.map(function (d) {
+					return d["title"];
+				}))
+				.rangeRound([0, w - leftPadding]).padding(0.1);
+
+	 		var yScale = d3.scaleLinear()
+			    .domain([0, d3.max(dataset, function (d){
+			    	return d["difficult words"];
+			    })])
+			    .rangeRound([h - bottomPadding, 0]);
+
+	 		rects.attr("x", function (d, i) {
+	 				return xScale(d.title) + leftPadding;
+	 			})
+	 			.attr("y", function (d) {
+	 				return yScale(d["difficult words"]);
+	 			})
+	 			.attr("width", xScale.bandwidth())
+	 			.attr("height", function (d) {
+	 				return h - bottomPadding - yScale(d["difficult words"]);
+	 			})
+	 			.attr("fill", "#5FA0C6");
+
+	 		var xAxis = d3.axisBottom(xScale)
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + leftPadding + ", "+ (h - bottomPadding) + ")")
+				.call(function(g) {
+					g.call(xAxis);
+					g.selectAll(".tick text").call(wrap, (w - leftPadding)/dataset.length);
+				});
+
+			var yAxis = d3.axisLeft(yScale);
+
+	 		svg.append("g")
+	 			.attr("transform", "translate(" + leftPadding + ", "+ 0 + ")")
+				.call(yAxis);
+		});
+
+		function wrap(text, width) {
+		  text.each(function() {
+		    var text = d3.select(this),
+		        words = text.text().split(/\s+/).reverse(),
+		        word,
+		        line = [],
+		        lineNumber = 0,
+		        lineHeight = 1.1, // ems
+		        y = text.attr("y"),
+		        dy = parseFloat(text.attr("dy")),
+		        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+		    while (word = words.pop()) {
+		      line.push(word);
+		      tspan.text(line.join(" "));
+		      if (tspan.node().getComputedTextLength() > width) {
+		        line.pop();
+		        tspan.text(line.join(" "));
+		        line = [word];
+		        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+		      }
+		    }
+		  });
+		}
+
+ 	</script>
+</body>
+</html>
