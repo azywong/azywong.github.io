@@ -125,7 +125,7 @@
 				.enter().append("svg:g")
 				.attr("class", "x axis")
 				.attr("transform", function(d, i) { return "translate(" + (padding.left + (i * size)) + "," + padding.top + ")"; })
-				.each(function(d) { d3.select(this).call(d3.axisBottom(xScale).ticks(2));
+				.each(function(d) { d3.select(this).call(d3.axisBottom(xScale).ticks(3));
 				 })
 				.append("text")
 				.attr("fill", "#000")
@@ -141,7 +141,7 @@
 				.enter().append("svg:g")
 				.attr("class", "y axis")
 				.attr("transform", function(d, i) { return "translate(" + padding.left + "," + ((i * size) + padding.top) + ")"; })
-				.each(function(d) { d3.select(this).call(d3.axisLeft(yScale)); })
+				.each(function(d) { d3.select(this).call(d3.axisLeft(yScale).ticks(5)); })
 				.append("text")
 				.attr("fill", "#000")
 				.attr("y", size)
@@ -149,6 +149,64 @@
 				.attr("text-anchor", "end")
 				.attr("transform", "rotate(-90) translate(0, -" + (size + padding.left / 3 * 2)+ ")")
 				.text("Diffcult Words");
+
+
+			months.forEach(function (m, i) {
+				var xOffset = 0;
+				var yOffset = 0;
+
+				if (i % 4 == 0) {
+					xOffset = padding.left;
+				} else if (i % 4 == 1) {
+					xOffset = padding.left + size;
+				} else if (i % 4 == 2) {
+					xOffset = padding.left + size * 2;
+				} else {
+					xOffset = padding.left + size * 3;
+				}
+
+				if  (i < 4) {
+					yOffset = padding.top;
+				} else if (i < 8) {
+					yOffset = padding.top + size;
+				} else {
+					yOffset = padding.top + size * 2;
+				}
+
+
+
+				svg.selectAll("month.label." + m.name)
+				.data(m.name)
+				.enter()
+				.append("text")
+				.attr("fill", "#2E4E60")
+	 			.attr("x", xOffset + size/2)
+	 			.attr("y", yOffset + 30)
+	 			.attr("text-anchor", "middle")
+	 			.text(m.name);
+
+				svg.selectAll("line.vertical." + m.name)
+				.data([1])
+				.enter()
+				.append("line")
+				.attr("stroke", "#bcbcbc")
+				.attr("stroke-width", "1")
+	 			.attr("x1", xOffset + size)
+	 			.attr("y1", yOffset + 0)
+	 			.attr("x2", xOffset + size)
+	 			.attr("y2", yOffset + size);
+
+	 			svg.selectAll("line.horizontal." + m.name)
+				.data([1])
+				.enter()
+				.append("line")
+				.attr("stroke", "#bcbcbc")
+				.attr("stroke-width", "1")
+	 			.attr("x1", xOffset	)
+	 			.attr("y1", yOffset + size)
+	 			.attr("x2", xOffset + size)
+	 			.attr("y2", yOffset + size);
+			});
 
 			// title for each category
 			months.forEach(function (m, i) {
@@ -172,11 +230,8 @@
 				} else {
 					yOffset = padding.top + size * 2;
 				}
-				console.log(i);
-				console.log(xOffset);
-				console.log(yOffset);
 
-				svg.selectAll("circle ." + m.name)
+				svg.selectAll("g.circle." + m.name)
 		 			.data(m.data)
 		 			.enter()
 		 			.append("circle")
@@ -189,24 +244,6 @@
 		 			})
 		 			.attr("r", 5);
 			})
-
-			// months.forEach(function (m) {
-			// 	svg.selectAll("circle")
-			// 	.data(m.data)
-			// 	.enter()
-			// 	.append("circle")
-			// 	.attr("fill", "#5FA0C6")
-	 	// 		.attr("cx", function (d) {
-	 	// 			return xScale(d.words);
-	 	// 		})
-	 	// 		.attr("cy", function (d) {
-	 	// 			return yScale(d["difficult words"]);
-	 	// 		})
-	 	// 		.attr("r", 7);
-	 	// 		.attr("transform", function (d) {
-	 	// 			return "translate(" + ")";
-	 	// 		})
-			// });
 
  		});
 	</script>
